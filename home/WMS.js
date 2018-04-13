@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ // './CSmain.js'
 requirejs(['./WorldWindShim',
         './LayerManager'],
     function (WorldWind,
@@ -176,107 +176,106 @@ requirejs(['./WorldWindShim',
                     console.log(layerName);
                     },
                 error: function() {
-                    alert("An error occurred while processing XML file.");
+                    console.log("An error occurred while processing XML file.");
                 }
             });
         });
 
-
-        var MenuName = "123";
-
-        $(document).ready(function(){
-
-
-        // function createflayer(){
-            var divf = document.createElement("div");
-            divf.className = "col-sm-3";
-            var h4 = document.createElement("h4");
-            var node = document.createTextNode("Menu");
-            var divf2 = document.createElement("div");
-                divf2.className = "container";
-            var div3 = document.createElement("div");
-                div3.className ="panel-group medium-3";
-                div3.id = "accordion";
-            var div4 = document.createElement("div");
-                div4.className ="panel panel-default";
-
-
-            divf.appendChild(h4);
-            divf.appendChild(divf2);
-            divf2.appendChild(div3);
-            div3.appendChild(div4);
-            h4.appendChild(node);
-            // console.log(div);
-        // }
-
-
-        layerName.forEach(function(n) {
-
-        // function createlayerN(){
-            var div6 = document.createElement("div");
-                div6.className = "panel-heading";
-            var h4 = document.createElement("h4");
-            h4.className ="panel-title";
-            var node2 = document.createTextNode(MenuName);
-            var a = document.createElement("a");
-                a.className="collapsed";
-                a.setAttribute("data-toggle","collapse");
-                a.setAttribute("data-parent","#nested1");
-                a.href="#collapseOne";
-            var div2 = document.createElement("div");
-                div2.id ="nested1-collapseOne";
-                div2.className = "panel-collapse collapse";
-                h4.appendChild(a);
-                a.appendChild(node2);
-                div6.appendChild(h4);
-                // console.log(div);
-            var divL = document.createElement("div");
-            divL.className = "panel-collapse collapse";
-            divL.id = "nested1-collapseOne";
-            var divL2 = document.createElement("div");
-            divL2.className="panel-body";
-            divL.appendChild(divL2);
-            div6.appendChild(divL);
-
-            // console.log(div);
-        // }
-
-
-            var element = document.getElementById("lol");
-            // console.log(element);
-            var divE3 = document.createElement("div");
-            var h = document.createElement("h5");
-            for(var s = 0; s < layerName.length; s++) {
-                var a2 = document.createElement("a");
-                var node = document.createTextNode(n);
-                // console.log(node);
-            }
-            var lab = document.createElement("label");
-            lab.className = "swith right";
-            var span = document.createElement("span");
-            span.className = "slider round";
-            for(var b = 0; b < layerName.length; b++) {
-
-            var checkbox = document.createElement('input');
-                checkbox.type = "checkbox";
-                checkbox.setAttribute("value", n);
-
-            }
-            checkbox.className = "swith_right";
-            lab.appendChild(checkbox);
-            lab.appendChild(span);
-            a2.appendChild(node);
-            h.appendChild(a2);
-            h.appendChild(lab);
-            divE3.appendChild(h);
-            divL2.appendChild(divE3);
-            element.appendChild(div6);
-            console.log(div6)
-
-        });
+        // var MenuName = "123";
+        //
+        // $(document).ready(function(){
+        //
+        //
+        // // function createflayer(){
+        //     var divf = document.createElement("div");
+        //     divf.className = "col-sm-3";
+        //     var h4 = document.createElement("h4");
+        //     var node = document.createTextNode("Menu");
+        //     var divf2 = document.createElement("div");
+        //         divf2.className = "container";
+        //     var div3 = document.createElement("div");
+        //         div3.className ="panel-group medium-3";
+        //         div3.id = "accordion";
+        //     var div4 = document.createElement("div");
+        //         div4.className ="panel panel-default";
+        //
+        //
+        //     divf.appendChild(h4);
+        //     divf.appendChild(divf2);
+        //     divf2.appendChild(div3);
+        //     div3.appendChild(div4);
+        //     h4.appendChild(node);
+        //     // console.log(div);
+        // // }
+        //
+        //
+        //
+        //
+        // // function createlayerN(){
+        //     var div6 = document.createElement("div");
+        //         div6.className = "panel-heading";
+        //     var h4 = document.createElement("h4");
+        //     h4.className ="panel-title";
+        //     var node2 = document.createTextNode(MenuName);
+        //     var a = document.createElement("a");
+        //         a.className="collapsed";
+        //         a.setAttribute("data-toggle","collapse");
+        //         a.setAttribute("data-parent","#nested1");
+        //         a.href="#collapseOne";
+        //     var div2 = document.createElement("div");
+        //         div2.id ="nested1-collapseOne";
+        //         div2.className = "panel-collapse collapse";
+        //         h4.appendChild(a);
+        //         a.appendChild(node2);
+        //         div6.appendChild(h4);
+        //         // console.log(div);
+        //     var divL = document.createElement("div");
+        //     divL.className = "panel-collapse collapse";
+        //     divL.id = "nested1-collapseOne";
+        //     var divL2 = document.createElement("div");
+        //     divL2.className="panel-body";
+        //     divL.appendChild(divL2);
+        //     div6.appendChild(divL);
+        //
+        //     // console.log(div);
+        // // }
+        //
+        //     layerName.forEach(function(n) {
+        //     var element = document.getElementById("lol");
+        //     // console.log(element);
+        //     var divE3 = document.createElement("div");
+        //     var h = document.createElement("h5");
+        //     for(var s = 0; s < layerName.length; s++) {
+        //         var a2 = document.createElement("a");
+        //         var node = document.createTextNode(n);
+        //         // console.log(node);
+        //     }
+        //     var lab = document.createElement("label");
+        //     lab.className = "swith right";
+        //     var span = document.createElement("span");
+        //     span.className = "slider round";
+        //     for(var b = 0; b < layerName.length; b++) {
+        //
+        //     var checkbox = document.createElement('input');
+        //         checkbox.type = "checkbox";
+        //
+        //
+        //     }
+        //     checkbox.className = "swith_right";
+        //     lab.appendChild(checkbox);
+        //     lab.appendChild(span);
+        //     a2.appendChild(node);
+        //     h.appendChild(a2);
+        //     h.appendChild(lab);
+        //     divE3.appendChild(h);
+        //     divL2.appendChild(divE3);
+        //     element.appendChild(div6);
+        //     console.log(div6)
+        //
         // });
-
-            });
+        // // });
+        //
+        //     });
         // Called if an error occurs during WMS Capabilities document retrieval
         var logError = function (jqXhr, text, exception) {
             console.log("There was a failure retrieving the capabilities document: " + text + " exception: " + exception);

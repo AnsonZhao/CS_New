@@ -53,6 +53,130 @@
             background-color: #3e8e41;
         }
     </style>
+    <script>
+        $(document).ready(function(){
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/checkbox",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("check box");
+
+                    for (var a = 0; a < res.length; a++) {
+                        var checkbox = document.createElement('checkbox');
+                        checkbox.setAttribute("value", res[a].ThirdLayer);
+                            checkbox.className = 'switch_right';
+                        console.log(checkbox);
+                        // element.appendchird(checkbox)
+
+
+                    }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/secondlayer",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("second layer");
+
+                    // for (var a = 0; a < res.length; a++) {
+                    //     var checkbox = document.createElement('checkbox');
+                    //     checkbox.setAttribute("value", res[a].ThirdLayer);
+                    //     checkbox.className = 'switch_right';
+                        console.log(res);
+                    //     // element.appendchird(checkbox)
+                    //
+                    //
+                    // }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/firstlayer",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("first layer");
+
+                    // for (var a = 0; a < res.length; a++) {
+                        //     var checkbox = document.createElement('checkbox');
+                        //     checkbox.setAttribute("value", res[a].ThirdLayer);
+                        //     checkbox.className = 'switch_right';
+                        console.log(res);
+                        //     // element.appendchird(checkbox)
+                        //
+                        //
+                    // }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+
+        });
+    </script>
 </head>
 
 
@@ -61,14 +185,7 @@
     <div>
         <img src="../src/TL WB Banner.jpg" align="middle" alt="Placeholder Image" /></a>
     <div>
-    <div class="dropdown">
-        <button class="dropbtn">Dropdown</button>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
-    </div>
+
 
     <div class="col-sm-3" id ="lol">
         <h4>Menu</h4>
@@ -1378,6 +1495,7 @@
         </canvas>
     </div>
 
+</div>
 </div>
 </div>
 </body>

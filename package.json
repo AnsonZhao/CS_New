@@ -65,5 +65,10 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "xmljson": "^0.2.0"
   }
 }
