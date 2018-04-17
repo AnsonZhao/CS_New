@@ -65,5 +65,14 @@
   ],
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "app.": "0.0.6",
+    "express": "^4.16.3",
+    "get": "^1.4.0",
+    "listen": "^1.0.1",
+    "mysql": "^2.15.0",
+    "post": "0.0.1",
+    "resolve_mysql_query_tester": "0.0.7"
   }
 }
