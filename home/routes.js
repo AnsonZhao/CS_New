@@ -23,9 +23,12 @@ var connection = mysql.createConnection({
 
      app.get('/checkbox', function (req, res) {
          res.setHeader("Access-Control-Allow-Origin", "*");
-         connection.query("SELECT ThirdLayer FROM LayerMenu", function (err,result) {
+
+         connection.query("SELECT * From CitySmart.LayerMenu", function (err,result) {
          console.log("recive and processing");
+
          var JSONresult = JSON.stringify(result, null, "\t");
+
          res.send(JSONresult);
          res.end();
 
@@ -35,21 +38,31 @@ var connection = mysql.createConnection({
 
     app.get('/secondlayer', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
+
     connection.query("SELECT SecondLayer FROM LayerMenu", function (err,result) {
+
         console.log("recive and processing");
+
         var JSONresult = JSON.stringify(result, null, "\t");
+
         res.send(JSONresult);
         res.end();
 
     });
 
 });
-app.get('/firstlayer', function (req, res) {
+    app.get('/firstlayer', function (req, res) {
+
     res.setHeader("Access-Control-Allow-Origin", "*");
+
     connection.query("SELECT FirstLayer FROM LayerMenu", function (err,result) {
+
         console.log("recive and processing");
+
         var JSONresult = JSON.stringify(result, null, "\t");
+
         res.send(JSONresult);
+
         res.end();
 
     });
@@ -60,7 +73,7 @@ app.get('/firstlayer', function (req, res) {
          connection.query("SELECT LayerName FROM LayerMenu", function (err, result) {
          });
      });
-     app.listen(9088, function() {
+     app.listen(9090, function() {
          console.log("My API is running...");
      });
 
