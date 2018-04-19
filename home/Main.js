@@ -452,21 +452,22 @@ requirejs(['./WorldWindShim',
         //This is creating the placemark layer and to connect the placemark to the switch
 
         var CreatePlacemarkLayer = function (splitB) {
-            this.placemark = Placemark;
-            this.placemarkAttributes = PlacemarkAttributes;
-            this.highlightAttributes = highlightAttributes;
+            var placemark = Placemark,
+            placemarkAttributes = PlacemarkAttributes,
+            highlightAttributes = highlightAttributes;
             // var placemarkLayer = new WorldWind.RenderableLayer(LayerInfo[k].Site_Name);
             // var PlacemarkSettings = //Set up the common placemark attributes.
-            this.placemarkAttributes.imageScale = 1;
-            this.placemarkAttributes.imageOffset = new WorldWind.Offset(
+            placemarkAttributes.imageScale = 1;
+            placemarkAttributes.imageOffset = new WorldWind.Offset(
                 WorldWind.OFFSET_FRACTION, 0.5,
                 WorldWind.OFFSET_FRACTION, 0.5);
-            this.placemarkAttributes.imageColor = WorldWind.Color.WHITE;
+            placemarkAttributes.imageColor = WorldWind.Color.WHITE;
             // console.log(splitB[0]);
             // this.latitude = splitB[0];
             // console.log(splitB[1]);
             // this.longitude = splitB[1];
-
+            //
+            //
             // //Lat and Long variables
             // var lat_long = [
             //     {place:"KHS Wind Turbine", latitude:57.793083, longitude:20},
@@ -476,7 +477,6 @@ requirejs(['./WorldWindShim',
             //
 
             // Create the custom image for the placemark.
-
             var canvas = document.createElement("canvas"),
                 ctx2d = canvas.getContext("2d"),
                 size = 64, c = size / 2 - 0.5, innerRadius = 5, outerRadius = 20;
@@ -494,22 +494,22 @@ requirejs(['./WorldWindShim',
             ctx2d.fill();
 
             // Create the placemark.
-            this.placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
+            placemark = new WorldWind.Placemark(new WorldWind.Position(latitude, longitude, 1e2), false, null);
             //placemark.label = "This is a school" + SitesPL[i].SiteID; // NA,USA,1234
-            this.placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
+            placemark.altitudeMode = WorldWind.RELATIVE_TO_GROUND;
 
             // Create the placemark attributes for the placemark.
-            this.PlacemarkAttributes = new WorldWind.PlacemarkAttributes(PlacemarkAttributes);
+            PlacemarkAttributes = new WorldWind.PlacemarkAttributes(PlacemarkAttributes);
             // Wrap the canvas created above in an ImageSource object to specify it as the placemark image source.
-            this.placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
-            this.placemark.attributes = PlacemarkAttributes;
+            placemarkAttributes.imageSource = new WorldWind.ImageSource(canvas);
+            placemark.attributes = PlacemarkAttributes;
 
             // Create the highlight attributes for this placemark. Note that the normal attributes are specified as
             // the default highlight attributes so that all properties are identical except the image scale. You could
             // instead vary the color, image, or other property to control the highlight representation.
-            this.highlightAttributes = new WorldWind.PlacemarkAttributes(PlacemarkAttributes);
+            highlightAttributes = new WorldWind.PlacemarkAttributes(PlacemarkAttributes);
             highlightAttributes.imageScale = 1.2;
-            this.placemark.highlightAttributes = highlightAttributes;
+            placemark.highlightAttributes = highlightAttributes;
 
             // // Add the placemark to the layer.
             // placemarkLayer.addRenderable(Placemark);
@@ -564,7 +564,7 @@ requirejs(['./WorldWindShim',
         //
         //                 // When the user clicks anywhere outside of the modal, close it
         //                 window.onclick = function (event) {
-        //                     if (event.target == modal) {
+        //                     if (event.target = modal) {
         //                         modal.style.display = "none";
         //                     }
         //
