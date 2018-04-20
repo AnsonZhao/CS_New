@@ -14,7 +14,174 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script data-main="WMS" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.17/require.min.js"></script>
     <link rel="stylesheet" href="menu.css"/>
+    <style>
+        .dropbtn {
+            background-color: white;
+            color: black;
+            padding: 7px;
+            font-size: 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: white}
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #3e8e41;
+        }
+    </style>
+    <script>
+        $(document).ready(function(){
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/checkbox",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("check box");
+
+                    for (var a = 0; a < res.length; a++) {
+                        var checkbox = document.createElement('checkbox');
+                        checkbox.setAttribute("value", res[a].ThirdLayer);
+                            checkbox.className = 'switch_right';
+                        console.log(checkbox);
+                        // element.appendchird(checkbox)
+
+
+                    }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/secondlayer",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("second layer");
+
+                    // for (var a = 0; a < res.length; a++) {
+                    //     var checkbox = document.createElement('checkbox');
+                    //     checkbox.setAttribute("value", res[a].ThirdLayer);
+                    //     checkbox.className = 'switch_right';
+                        console.log(res);
+                    //     // element.appendchird(checkbox)
+                    //
+                    //
+                    // }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:9088/firstlayer",
+                dataType: "json",
+                success: function(res){
+                    var element = document.getElementById('lol');
+                    console.log("first layer");
+
+                    // for (var a = 0; a < res.length; a++) {
+                        //     var checkbox = document.createElement('checkbox');
+                        //     checkbox.setAttribute("value", res[a].ThirdLayer);
+                        //     checkbox.className = 'switch_right';
+                        console.log(res);
+                        //     // element.appendchird(checkbox)
+                        //
+                        //
+                    // }
+                },
+                error: function(jqXHR, exception) {
+                    var msg = '';
+                    if (jqXHR.status === 0) {
+                        msg = 'Not connect.\n Verify Network.';
+                    } else if (jqXHR.status == 404) {
+                        msg = 'Requested page not found. [404]';
+                    } else if (jqXHR.status == 500) {
+                        msg = 'Internal Server Error [500].';
+                    } else if (exception === 'parsererror') {
+                        msg = 'Requested JSON parse failed.';
+                    } else if (exception === 'timeout') {
+                        msg = 'Time out error.';
+                    } else if (exception === 'abort') {
+                        msg = 'Ajax request aborted.';
+                    } else {
+                        msg = 'Uncaught Error.\n' + jqXHR.responseText;
+                    }
+                    alert(msg);
+
+                }
+            });
+
+        });
+    </script>
 </head>
+
+
 <body>
 <div class="container">
     <div class="jumbotron hidden-xs">
@@ -60,7 +227,7 @@
                             <div class="panel-body">
 
                                 <!-- nested -->
-
+ 
 
                                 <div class="panel-group" id="nested1">
 
@@ -1356,4 +1523,3 @@
 </div>
 </body>
 </html>
-

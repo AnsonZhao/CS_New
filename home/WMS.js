@@ -1,18 +1,18 @@
-/*
-* Copyright 2015-2017 WorldWind Contributors
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ /*
+ * Copyright 2015-2017 WorldWind Contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 requirejs(['./WorldWindShim',
         './LayerManager'],
@@ -57,16 +57,16 @@ requirejs(['./WorldWindShim',
 
             $(".switch_right").each(function (i) {
 
-                layerName[i] = $(this).val();
+               layerName[i] = $(this).val();
 
             });
             // (layerName2).push(layer2);
-            var strs = layerName + '';
+            var strs = layerName+'';
 
             var res = strs.split(",");
 
             layerName = res.slice(0);
-            console.log(layerName);
+
         });
 
 
@@ -82,10 +82,12 @@ requirejs(['./WorldWindShim',
         // splitString(layerName, comma);
 
 
+
         var createLayer = function (xmlDom) {
             // Create a WmsCapabilities object from the XML DOM
             var wms = new WorldWind.WmsCapabilities(xmlDom);
             // Retrieve a WmsLayerCapabilities object by the desired layer name
+
             for (var n = 0; n < layerName.length; n++) {
                 var NA = layerName[n];
 
@@ -104,8 +106,8 @@ requirejs(['./WorldWindShim',
 
         };
 
-        $(function () {
-            $('.switch_right').click(function () {
+        $(function(){
+            $('.switch_right').click(function(){
                 var val = [];
                 if ($('.switch_right').is(":checkbox:checked")) {
 
@@ -113,16 +115,16 @@ requirejs(['./WorldWindShim',
 
                     $(':checkbox:checked').each(function () {
                         val = $(this).val();
-                        var str = val + '';
+                        var str = val+'';
                         val = str.split(",");
 
                         for (var a = 0; a < layers.length; a++) {
-                            for (var i = 0; i < val.length; i++) {
+                                for(var i = 0; i < val.length; i++) {
                                 if (layers[a].displayName === val[i]) {
 
                                     layers[a].enabled = true;
 
-                                } else if (val.length < 1) {
+                                } else if (val.length < 1 ) {
                                     console.log("error");
                                 }
                             }
@@ -131,12 +133,12 @@ requirejs(['./WorldWindShim',
                     });
                 }
 
-                if ($('.switch_right').is(":not(:checked)")) {
+                if($('.switch_right').is(":not(:checked)")) {
                     // console.log("enable:false");
                     var layer = [];
                     $(":checkbox:not(:checked)").each(function (i) {
                         layer = $(this).val();
-                        var str = layer + '';
+                        var str = layer+'';
                         layer = str.split(",");
                         // console.log(str);
                         // console.log(layer[i]);
@@ -146,14 +148,14 @@ requirejs(['./WorldWindShim',
                         // console.log("s"+layers[a].displayName);
 
                         for (var a = 0; a < layers.length; a++) {
-                            for (var l = 0; l < layer.length; l++) {
-                                if (layers[a].displayName === layer[l]) {
+                            for(var l = 0; l < layer.length; l++) {
+                            if (layers[a].displayName === layer[l]) {
 
-                                    layers[a].enabled = false;
-                                    console.log("str: " + layers[a].displayName);
-                                    // console.log(layers[a]);
-                                }
+                                layers[a].enabled = false;
+                                console.log("str: " + layers[a].displayName);
+                                // console.log(layers[a]);
                             }
+                        }
                         }
 
                     });
@@ -162,6 +164,25 @@ requirejs(['./WorldWindShim',
             });
         });
 
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: "http://cs.aworldbridgelabs.com:8080/geoserver/ows?service=WMS&request=GetCapabilities&version=1.1.1",
+                dataType: "xml",
+                success: function(xml){
+                    $(xml).find('Layer').each(function(){
+                         var sTitle = $(this).find('Name').text();
+                        layerName.push(sTitle);
+                    });
+                    console.log(layerName);
+                    },
+                error: function() {
+                    console.log("An error occurred while processing XML file.");
+                }
+            });
+        });
+
+        // var MenuName = "123";
         //
 
 
