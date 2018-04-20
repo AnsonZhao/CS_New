@@ -17,34 +17,15 @@ var connection = mysql.createConnection({
     database: 'CitySmart'
 });
 
-app.get('/ChangeSelectList', function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    connection.query("SELECT Country, City FROM Country2City", function (err, results) {
-        if (err) throw err;
-        console.log(results);
-        res.send(results);
-        res.end();
-    });
-});
-
-app.get('/ChangeLayerList', function (req, res) {
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    connection.query("SELECT FirstLayer , SecondLayer , CityName , ClassName FROM LayerMenu", function (err, results) {
-        if (err) throw err;
-        res.send(results);
-        res.end();
-    });
-});
-
-connection.connect(function(err) {
-    if (err) throw err;
-    //Select all customers and return the result object:
-    connection.query("SELECT LayerName FROM LayerMenu", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-        res.JSON(result)
-    });
-});
+// connection.connect(function(err) {
+//     if (err) throw err;
+//     //Select all customers and return the result object:
+//     connection.query("SELECT LayerName FROM LayerMenu", function (err, result, fields) {
+//         if (err) throw err;
+//         console.log(result);
+//         res.JSON(result)
+//     });
+// });
 
 var server = app.listen(9080, function () {
     var host = server.address().address;

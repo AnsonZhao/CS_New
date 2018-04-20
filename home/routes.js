@@ -21,59 +21,83 @@ var connection = mysql.createConnection({
     //     // res.JSON(result);
     // });
 
-     app.get('/checkbox', function (req, res) {
-         res.setHeader("Access-Control-Allow-Origin", "*");
+//      app.get('/checkbox', function (req, res) {
+//          res.setHeader("Access-Control-Allow-Origin", "*");
+//
+//          connection.query("SELECT * From CitySmart.LayerMenu", function (err,result) {
+//          console.log("recive and processing");
+//
+//          var JSONresult = JSON.stringify(result, null, "\t");
+//
+//          res.send(JSONresult);
+//          res.end();
+//
+//          });
+//
+//      });
+//
+//     app.get('/secondlayer', function (req, res) {
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//
+//     connection.query("SELECT SecondLayer FROM LayerMenu", function (err,result) {
+//
+//         console.log("recive and processing");
+//
+//         var JSONresult = JSON.stringify(result, null, "\t");
+//
+//         res.send(JSONresult);
+//         res.end();
+//
+//     });
+//
+// });
+//     app.get('/firstlayer', function (req, res) {
+//
+//     res.setHeader("Access-Control-Allow-Origin", "*");
+//
+//     connection.query("SELECT FirstLayer FROM LayerMenu", function (err,result) {
+//
+//         console.log("recive and processing");
+//
+//         var JSONresult = JSON.stringify(result, null, "\t");
+//
+//         res.send(JSONresult);
+//
+//         res.end();
+//
+//     });
+//
+// });
+//
+//      app.get('firstlayer',function(req,res) {
+//          connection.query("SELECT LayerName FROM LayerMenu", function (err, result) {
+//          });
+//      });
 
-         connection.query("SELECT * From CitySmart.LayerMenu", function (err,result) {
-         console.log("recive and processing");
 
-         var JSONresult = JSON.stringify(result, null, "\t");
-
-         res.send(JSONresult);
-         res.end();
-
-         });
-
-     });
-
-    app.get('/secondlayer', function (req, res) {
+    app.get('/ChangeSelectList', function (req, res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
+    connection.query("SELECT Country, City FROM Country2City", function (err, results) {
+        if (err) throw err;
+        res.send(results);
+        res.end();
+    });
+});
 
-    connection.query("SELECT SecondLayer FROM LayerMenu", function (err,result) {
-
-        console.log("recive and processing");
-
-        var JSONresult = JSON.stringify(result, null, "\t");
-
-        res.send(JSONresult);
+    app.get('/ChangeLayerList', function (req, res) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    connection.query("SELECT FirstLayer , SecondLayer , CityName , ClassName FROM LayerMenu", function (err, results) {
+        if (err) throw err;
+        var layerInfo = JSON.stringify(results, null, "\t");
+        res.send(layerInfo);
+        console.log(res);
         res.end();
 
     });
-
-});
-    app.get('/firstlayer', function (req, res) {
-
-    res.setHeader("Access-Control-Allow-Origin", "*");
-
-    connection.query("SELECT FirstLayer FROM LayerMenu", function (err,result) {
-
-        console.log("recive and processing");
-
-        var JSONresult = JSON.stringify(result, null, "\t");
-
-        res.send(JSONresult);
-
-        res.end();
-
-    });
-
 });
 
-     app.get('firstlayer',function(req,res) {
-         connection.query("SELECT LayerName FROM LayerMenu", function (err, result) {
-         });
-     });
-     app.listen(9090, function() {
+
+     app.listen(9080, function() {
          console.log("My API is running...");
      });
 

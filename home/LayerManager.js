@@ -68,7 +68,7 @@ function ChangeSelectList(countrylevel) {
                 if (countrylevel === results[i].Country) {
                     option = new Option(results[i].City, results[i].City);
                     cityList.add(option);
-                    $('.panel').hide();
+                    $('.Menu').hide();
                     // if (results[i].City.length > 1) {
                     //     for (var j = 0; j < results[i].City.length; j++) {
                     //         option = new Option(results[i].City[j],results[i].City[j]);
@@ -109,25 +109,45 @@ function ChangeSelectList(countrylevel) {
 function ChangeLayerList(citylevel) {
     $.ajax({
         url: "http://localhost:9080/ChangeLayerList",
-        dataType: 'json',
-        success: function (results) {
-            var jsStr = JSON.stringify(results);
-            var js = JSON.parse(jsStr);
-            for (var i = 0; i < results.length; i++) {
-                if (citylevel = results[i].CityName) {
-                    alert("11111")
-
+        dataType:"json",
+        success: function (res) {
+            var returnCityObj = getObjects(res,'CityName',citylevel);
+            console.log(returnCityObj);
+            for (var i = 0; i < res.length; i++) {
+                if (citylevel === res[i].CityName) {
+                    $('.Menu').hide();
+                    for(var j = 0; j < returnCityObj.length; j++) {
+                        var obj1 = returnCityObj[j].FirstLayer;
+                        var obj2 =returnCityObj[j].SecondLayer;
+                        var obj3 = returnCityObj[j].ClassName;
+                        var className1 = '.' + obj1;
+                        var className2 = '.' + obj2;
+                        var className3 = '.' + obj3;
+                        $(className1).show();
+                        $(className2).show();
+                        $(className3).show();
+                    }
                 }
-                //  var returnCityObj = getObjects(js, 'City', citylevel);
-                //  var cityMenu = [];
-                // cityMenu = cityMenu.concat(returnCityObj[0].FirstLayer).concat(returnCityObj[0].SecondLayer).concat(returnCityObj[0].ClassName);
-                //  $('.panel').hide();
-                //  cityMenu.forEach(function (value) {
-                //      var className = '.' + value;
-                //      // console.log(className);
-                //      $(className).show();
-                //  })
             }
+        },
+        error: function (jqXHR, exception) {
+            var msg = '';
+            if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+            } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+            } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+            } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+            } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+            } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+            } else {
+                msg = 'Uncaught Error.\n' + jqXHR.responseText;
+            }
+            console.log(msg);
         }
     });
 
