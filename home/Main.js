@@ -94,6 +94,10 @@ requirejs(['./WorldWindShim',
 
         var infobox;
 
+        var location1 = infobox[k].Latitude;
+
+        var location2 = infobox[k].Longitude;
+
         $(document).ready(function () {
             $.ajax({
                 url: 'http://localhost:3005/66',
@@ -107,14 +111,16 @@ requirejs(['./WorldWindShim',
 
                             var colorAttribute = infobox[k].Color;
                             var cAtwo = colorAttribute.split(" ");
-                            // console.log(cAtwo);
+                            console.log(cAtwo);
 
-                            var location = infobox[k].Latitude_and_Longitude_Decimal;
+                            var latlon = infobox[k].Latitude;
                             var ptwo = location.split(",");
+                            //
+                            // var location2 = infobox[k].Longitude;
 
-                            // console.log(ptwo);
+                            console.log(ptwo);
 
-                            var LayerName = infobox[k].Layer_Name;
+                            var LayerName = infobox[k].LayerName;
                             // console.log(LayerName);
 
 
@@ -198,7 +204,7 @@ requirejs(['./WorldWindShim',
                         for (var a = 0; a < layers.length; a++) {
 
                             if (layers[a].displayName === val1) {
-                                // alert(layers[a].displayName + " works now!");
+                                alert(layers[a].displayName + " works now!");
                                 layers[a].enabled = true;
 
                             }
@@ -303,7 +309,8 @@ requirejs(['./WorldWindShim',
             placemarkAttributes.imageColor = WorldWind.Color.WHITE;
 
 
-            placemark = new WorldWind.Placemark(new WorldWind.Position(latandlong[0], latandlong[1], 1e2), true, null);
+            // placemark = new WorldWind.Placemark(new WorldWind.Position(latandlong[0], latandlong[1], 1e2), true, null);
+            placemark = new WorldWind.Placemark(new WorldWind.Position(location1, location2, 1e2), true, null);
             // placemark.label = "Placemark" + "\n"
             placemark.displayName = LayerName;
             //     + "Lat " + placemark.position.latitude.toPrecision(4).toString() + "\n"
@@ -421,10 +428,11 @@ requirejs(['./WorldWindShim',
             }
         };
 
-            var sitePopUp = function (latitude, longitude) {
+            var sitePopUp = function (location1, location2) {
                 var popupBodyItem = $("#popupBody");
-                var c = latitude + "," + longitude;
-                // console.log(c);
+                var c = location1 + "," + location2;
+                // var c = latitude + "," + longitude;
+                console.log(c);
 
                 // console.log(infobox);
 
@@ -432,7 +440,7 @@ requirejs(['./WorldWindShim',
                 for (var k = 0, lengths = infobox.length; k < lengths; k++) {
                     // alert("popup info");
 
-                    if (infobox[k].Latitude_and_Longitude_Decimal === c) {
+                    if (infobox[k].Longitude === c) {
                         // console.log("good-bye");
                         popupBodyItem.children().remove();
                         // alert(infobox[k].sitename);
@@ -447,7 +455,7 @@ requirejs(['./WorldWindShim',
                         popupBodyItem.append(popupBodyDesc);
                         popupBodyItem.append(fillerImages);
                         popupBodyItem.append(imageLinks);
-                        break
+                        break;
 
                         // alert(popupBodyName);
                     }
@@ -478,3 +486,4 @@ requirejs(['./WorldWindShim',
         globe.addEventListener("click", handleMouseCLK);
 
     });
+

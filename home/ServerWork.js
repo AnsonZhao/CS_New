@@ -6,9 +6,9 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
     host: "10.11.90.15",
-    user: "Amy",
-    password: "@mesMING1010656",
-    database: "CitySmart"
+    user: "AppUser",
+    password: "Special888%",
+    database: "CitySmart2"
 });
 // app.use(cors());
 
@@ -18,8 +18,8 @@ var con = mysql.createConnection({
 app.get('/66', function(req, res) {
     console.log("Hello traveler");
     res.setHeader("Access-Control-Allow-Origin", "*"); // Allow cross domain header
-    var select = "SELECT * FROM CitySmart.placemarkinfo;";
-    con.query(select, function (err, result) {
+    var select = "SELECT * FROM CitySmart2.LayerMenu WHERE LayerType = 'Placemark'";
+    con.query( select, function (err, result) {
         if (err) throw err;
         else {
             console.log(result);
